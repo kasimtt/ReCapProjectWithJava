@@ -1,0 +1,11 @@
+package RentACar.business.abstracts;
+
+import java.util.List;
+
+import RentACar.business.requests.CreateBrandRequest;
+import RentACar.business.responses.GetAllBrandsResponse;
+
+public interface BrandService {
+	List<GetAllBrandsResponse> GetAll();
+	void Add(CreateBrandRequest createBrandRequest); 
+}

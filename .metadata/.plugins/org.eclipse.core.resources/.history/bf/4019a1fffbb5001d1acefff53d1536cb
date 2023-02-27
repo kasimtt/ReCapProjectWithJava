@@ -1,0 +1,39 @@
+package RentACar.wepApi.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import RentACar.business.abstracts.BrandService;
+import RentACar.business.requests.CreateBrandRequest;
+import RentACar.business.responses.GetAllBrandsResponse;
+
+@RestController
+@RequestMapping("/api/brands")
+public class BrandsController {
+	
+	private BrandService brandService;
+	
+	@Autowired
+	public BrandsController(BrandService brandService) {
+		this.brandService = brandService;
+	}
+	
+	@GetMapping("/getall")
+	public List<GetAllBrandsResponse> getAll()
+	{ 
+		return brandService.GetAll();
+	}
+	
+	@PostMapping("/add")
+	public void Add(CreateBrandRequest createBrandRequest)
+	{
+		brandService.Add(createBrandRequest);
+	}
+	
+	
+}

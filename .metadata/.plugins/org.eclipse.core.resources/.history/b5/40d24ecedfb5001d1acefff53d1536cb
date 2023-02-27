@@ -1,0 +1,6 @@
+package RentACar.business.requests;
+
+public class CreateBrandRequest {
+
+	private String name;
+}

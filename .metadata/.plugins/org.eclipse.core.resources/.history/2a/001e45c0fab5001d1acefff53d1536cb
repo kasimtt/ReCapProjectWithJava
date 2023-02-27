@@ -1,0 +1,9 @@
+package RentACar.business.abstracts;
+
+import java.util.List;
+
+import RentACar.entities.concretes.Brand;
+
+public interface BrandService {
+	List<Brand> GetAll();
+}
