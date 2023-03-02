@@ -7,5 +7,6 @@ import RentACar.entities.concretes.Brand;
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Integer>{
 	
- 
+   boolean existsByName(String name);
+   boolean existsById(String id);     //spring jpa keywords
 }

@@ -1,0 +1,5 @@
+package RentACar.business.businessMapper;
+
+public class carMapper {
+
+}

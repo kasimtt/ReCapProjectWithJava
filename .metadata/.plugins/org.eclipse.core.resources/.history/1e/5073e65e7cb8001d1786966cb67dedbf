@@ -1,0 +1,43 @@
+package RentACar.business.concretes;
+
+import java.util.List;
+
+import RentACar.business.abstracts.CarService;
+import RentACar.business.requests.car.CreateCarRequest;
+import RentACar.business.requests.car.UpdateCarRequest;
+import RentACar.business.responses.car.GetAllCarsResponse;
+import RentACar.business.responses.car.GetByIdCarResponse;
+
+public class CarManager implements CarService{
+
+	@Override
+	public List<GetAllCarsResponse> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void add(CreateCarRequest createCarRequest) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(UpdateCarRequest updateCarRequest) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public GetByIdCarResponse getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

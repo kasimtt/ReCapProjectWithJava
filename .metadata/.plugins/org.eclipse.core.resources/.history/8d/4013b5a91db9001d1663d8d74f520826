@@ -1,0 +1,12 @@
+package RentACar.business.businessMapper;
+
+import org.modelmapper.ModelMapper;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public class carMapper {
+	private ModelMapper modelMapper;
+	
+	public 
+}

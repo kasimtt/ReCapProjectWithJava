@@ -1,0 +1,5 @@
+package RentACar.core.utilities.exceptions;
+
+public class BusinessException {
+
+}

@@ -1,0 +1,5 @@
+package RentACar.business.responses;
+
+public class GetAllModelsResponse {
+
+}

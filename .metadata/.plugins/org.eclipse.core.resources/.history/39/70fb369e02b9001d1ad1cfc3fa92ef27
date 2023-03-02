@@ -1,0 +1,22 @@
+package RentACar.business.rules;
+
+import org.springframework.stereotype.Service;
+
+import RentACar.core.utilities.exceptions.BusinessException;
+import RentACar.dataAccess.abstracts.ModelRepository;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
+public class ModelBusinessRules {
+	private ModelRepository modelRepository;
+
+	public void checkIfModelNameExists(String name)
+	{
+		if(this.modelRepository.existsByName(name))
+		{
+			throw new BusinessException("Model AlReady Exists");
+		}
+		
+	}
+}

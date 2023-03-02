@@ -1,0 +1,5 @@
+package RentACar.business.responses.car;
+
+public class GetAllCarsResponse {
+
+}

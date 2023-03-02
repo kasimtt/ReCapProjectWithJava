@@ -1,0 +1,64 @@
+package RentACar.business.concretes;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import RentACar.business.abstracts.ModelService;
+import RentACar.business.requests.model.CreateModelRequest;
+import RentACar.business.requests.model.UpdateModelRequest;
+import RentACar.business.responses.model.GetAllModelsResponse;
+import RentACar.business.responses.model.GetByIdModelResponse;
+import RentACar.business.rules.ModelBusinessRules;
+import RentACar.core.utilities.mappers.ModelMapperService;
+import RentACar.dataAccess.abstracts.ModelRepository;
+import RentACar.entities.concretes.Model;
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
+public class ModelManager implements ModelService {
+
+	private ModelRepository modelRepository;
+	private ModelMapperService modelMapperService;
+	private ModelBusinessRules modelBusinessRules;
+	@Override
+	public List<GetAllModelsResponse> getAll() {
+	   List<Model> models = modelRepository.findAll();
+	   List<GetAllModelsResponse> modelsResponses = models.stream().map(model->this.modelMapperService.forResponse()
+				.map(model, GetAllModelsResponse.class)).collect(Collectors.toList());
+	return modelsResponses;
+	}
+
+	@Override
+	public void add(CreateModelRequest createModelRequest) {
+		modelBusinessRules.checkIfModelNameExists(createModelRequest.getName());
+		Model model = this.modelMapperService.forRequest().map(createModelRequest, Model.class);
+		modelRepository.save(model);
+		
+	}
+
+	@Override
+	public void update(UpdateModelRequest updateModelRequest) {
+		modelBusinessRules.checkIfModelIdExists(updateModelRequest.getId());
+		Model model = this.modelMapperService.forRequest().map(updateModelRequest,Model.class);
+		modelRepository.save(model);
+		
+	}
+
+	@Override
+	public void delete(int id) {
+		modelBusinessRules.checkIfModelIdExists(id);
+		modelRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public GetByIdModelResponse getModelById(int id) {
+		modelBusinessRules.checkIfModelIdExists(id);
+		Model model = modelRepository.findById(id).orElseThrow();
+		GetByIdModelResponse modelResponse = this.modelMapperService.forResponse().map(model, GetByIdModelResponse.class);
+		return modelResponse;
+	}
+}

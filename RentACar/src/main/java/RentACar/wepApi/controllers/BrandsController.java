@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import RentACar.business.abstracts.BrandService;
-import RentACar.business.requests.CreateBrandRequest;
-import RentACar.business.requests.UpdateBrandRequest;
-import RentACar.business.responses.GetAllBrandsResponse;
-import RentACar.business.responses.GetByIdBrandResponse;
+import RentACar.business.requests.brand.CreateBrandRequest;
+import RentACar.business.requests.brand.UpdateBrandRequest;
+import RentACar.business.responses.brand.GetAllBrandsResponse;
+import RentACar.business.responses.brand.GetByIdBrandResponse;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -31,7 +31,7 @@ public class BrandsController {
 	@GetMapping()
 	public List<GetAllBrandsResponse> getAll()
 	{ 
-		return brandService.GetAll();
+		return brandService.getAll();
 	}
 	
 	@GetMapping("/{id}")
@@ -44,19 +44,19 @@ public class BrandsController {
 	@ResponseStatus(code=HttpStatus.CREATED)
 	public void Add(@RequestBody CreateBrandRequest createBrandRequest)
 	{
-		brandService.Add(createBrandRequest);
+		brandService.add(createBrandRequest);
 	}
 	
 	@PutMapping()
 	public void Update(@RequestBody UpdateBrandRequest updateBrandRequest)
 	{
-		brandService.Update(updateBrandRequest);
+		brandService.update(updateBrandRequest);
 		
 	}
 	
 	@DeleteMapping("/{id}")
 	public void Delete(@PathVariable int id)
 	{
-		brandService.Delete(id);
+		brandService.delete(id);
 	}
 }

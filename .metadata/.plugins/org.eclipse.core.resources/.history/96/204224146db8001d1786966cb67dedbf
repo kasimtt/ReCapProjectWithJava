@@ -1,0 +1,5 @@
+package RentACar.business.requests.model;
+
+public class UpdateModelRequest {
+
+}

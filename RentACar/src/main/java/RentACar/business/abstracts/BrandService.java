@@ -2,15 +2,15 @@ package RentACar.business.abstracts;
 
 import java.util.List;
 
-import RentACar.business.requests.CreateBrandRequest;
-import RentACar.business.requests.UpdateBrandRequest;
-import RentACar.business.responses.GetAllBrandsResponse;
-import RentACar.business.responses.GetByIdBrandResponse;
+import RentACar.business.requests.brand.CreateBrandRequest;
+import RentACar.business.requests.brand.UpdateBrandRequest;
+import RentACar.business.responses.brand.GetAllBrandsResponse;
+import RentACar.business.responses.brand.GetByIdBrandResponse;
 
 public interface BrandService {
-	List<GetAllBrandsResponse> GetAll();
+	List<GetAllBrandsResponse> getAll();
 	GetByIdBrandResponse getById(int id);
-	void Add(CreateBrandRequest createBrandRequest);
-	void Update(UpdateBrandRequest updateBrandRequest);
-	void Delete(int id);
+	void add(CreateBrandRequest createBrandRequest);
+	void update(UpdateBrandRequest updateBrandRequest);
+	void delete(int id);
 }
