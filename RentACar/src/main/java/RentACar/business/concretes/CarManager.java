@@ -11,6 +11,7 @@ import RentACar.business.requests.car.CreateCarRequest;
 import RentACar.business.requests.car.UpdateCarRequest;
 import RentACar.business.responses.car.GetAllCarsResponse;
 import RentACar.business.responses.car.GetByIdCarResponse;
+import RentACar.business.rules.CarBusinessRules;
 import RentACar.core.utilities.mappers.ModelMapperService;
 import RentACar.dataAccess.abstracts.CarRepository;
 import RentACar.entities.concretes.Car;
@@ -23,7 +24,7 @@ public class CarManager implements CarService{
 
 	private CarRepository carRepository;
 	private ModelMapperService modelMapperService;
-	
+	private CarBusinessRules carBusinessRules;
 	@Override
 	public List<GetAllCarsResponse> getAll() {
 		
@@ -40,7 +41,7 @@ public class CarManager implements CarService{
 
 	@Override
 	public void add(CreateCarRequest createCarRequest) {
-		// TODO Auto-generated method stub
+		carBusinessRules.CheckIfCarPlateExists(createCarRequest.getPlate());
 		Car car = this.modelMapperService.forRequest().map(createCarRequest, Car.class);
 	    carRepository.save(car);                
 	}

@@ -1,0 +1,12 @@
+package RentACar.dataAccess.abstracts;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import RentACar.entities.concretes.Brand;
+@Repository
+public interface BrandRepository extends JpaRepository<Brand, Integer>{
+	
+   boolean existsByName(String name);
+   boolean existsById(String id);     //spring jpa keywords
+}

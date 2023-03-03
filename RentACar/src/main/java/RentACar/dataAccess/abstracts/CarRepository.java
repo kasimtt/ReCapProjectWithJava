@@ -7,4 +7,6 @@ import RentACar.entities.concretes.Car;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer> {
 
+	boolean existsByPlate(String plate);
+
 }
