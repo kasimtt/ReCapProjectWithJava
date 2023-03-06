@@ -2,7 +2,6 @@ package RentACar.business.concretes;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,6 @@ import RentACar.core.utilities.mappers.ModelMapperService;
 import RentACar.dataAccess.abstracts.CarRepository;
 import RentACar.entities.concretes.Car;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Service
 @AllArgsConstructor
@@ -48,6 +46,7 @@ public class CarManager implements CarService{
 
 	@Override
 	public void update(UpdateCarRequest updateCarRequest) {
+		carBusinessRules.CheckIfCarIdExists(updateCarRequest.getId());
 		Car car = this.modelMapperService.forRequest().map(updateCarRequest, Car.class);
 		carRepository.save(car);
 		
@@ -55,12 +54,14 @@ public class CarManager implements CarService{
 
 	@Override
 	public void delete(int id) {
+		carBusinessRules.CheckIfCarIdExists(id);
 		carRepository.deleteById(id);
 		
 	}
 
 	@Override
 	public GetByIdCarResponse getById(int id) {
+		carBusinessRules.CheckIfCarIdExists(id);
 		Car car = carRepository.findById(id).orElseThrow();
 		GetByIdCarResponse carResponse = this.modelMapperService.forResponse().map(car, GetByIdCarResponse.class);
 		return carResponse;

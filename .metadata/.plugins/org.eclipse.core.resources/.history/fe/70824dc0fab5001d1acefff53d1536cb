@@ -1,5 +1,0 @@
-package RentACar.business.responses;
-
-public class GetAllBrandsResponse {
-
-}

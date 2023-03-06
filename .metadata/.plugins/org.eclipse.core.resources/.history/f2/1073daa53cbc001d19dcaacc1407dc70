@@ -1,0 +1,5 @@
+package RentACar.wepApi.controllers;
+
+public class CitiesController {
+
+}

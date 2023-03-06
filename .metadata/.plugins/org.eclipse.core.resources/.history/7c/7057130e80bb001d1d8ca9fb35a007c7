@@ -1,0 +1,5 @@
+package RentACar.business.responses.city;
+
+public class GetAllCityResponse {
+
+}

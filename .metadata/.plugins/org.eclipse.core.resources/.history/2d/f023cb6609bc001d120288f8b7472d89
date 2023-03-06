@@ -1,0 +1,5 @@
+package RentACar.business.rules;
+
+public class CityBusinessRules {
+
+}
