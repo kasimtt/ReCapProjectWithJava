@@ -1,0 +1,67 @@
+package RentACar.business.concretes;
+
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import RentACar.business.abstracts.CorporateCustomerService;
+import RentACar.business.requests.corporateCustomer.CreateCorporateCustomerRequest;
+import RentACar.business.requests.corporateCustomer.UpdateCorporateCustomerRequest;
+import RentACar.business.responses.corporateCustomer.GetAllCorporateCustomerResponse;
+import RentACar.business.responses.corporateCustomer.GetByIdCorporateCustomerResponse;
+import RentACar.business.rules.CorporateCustomerBusinessRules;
+import RentACar.core.utilities.mappers.ModelMapperService;
+import RentACar.dataAccess.abstracts.CorporateCustomerRepository;
+import RentACar.entities.concretes.CorporateCustomer;
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
+public class CorporateCustomerManager implements CorporateCustomerService{
+
+	private CorporateCustomerRepository corporateCustomerRepository;
+	private ModelMapperService modelMapperService;
+	private CorporateCustomerBusinessRules corporateCustomerBusinessRules;
+	
+	@Override
+	public void add(CreateCorporateCustomerRequest createCorporateCustomerRequest) {
+	
+		corporateCustomerBusinessRules.CheckIfNameExists(createCorporateCustomerRequest.getCompanyName());
+		CorporateCustomer corporateCustomer = this.modelMapperService.forRequest().map(createCorporateCustomerRequest, CorporateCustomer.class);
+		corporateCustomerRepository.save(corporateCustomer);
+	}
+
+	@Override
+	public void update(UpdateCorporateCustomerRequest updateCorporateCustomerRequest) {
+		//checkIfNameExist//checkIfIdExists
+		CorporateCustomer corporateCustomer = this.modelMapperService.forRequest().map(updateCorporateCustomerRequest, CorporateCustomer.class);
+		corporateCustomerRepository.save(corporateCustomer);
+		
+	}
+
+	@Override
+	public void delete(int id) {
+		//checkIfIdExist
+		corporateCustomerRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public List<GetAllCorporateCustomerResponse> getAll() {
+		List<CorporateCustomer> corporateCustomers = corporateCustomerRepository.findAll();
+		List<GetAllCorporateCustomerResponse> corporateCustomerResponses = corporateCustomers.stream().map(corporateCustomerResponse->this.modelMapperService.forResponse()
+				.map(corporateCustomerResponse, GetAllCorporateCustomerResponse.class )).collect(Collectors.toList());
+		return corporateCustomerResponses;
+	}
+
+	@Override
+	public GetByIdCorporateCustomerResponse getById(int id) {
+		CorporateCustomer corporateCustomer = corporateCustomerRepository.findById(id).orElseThrow();
+		GetByIdCorporateCustomerResponse corporateCustomerResponse = this.modelMapperService.forResponse().map(corporateCustomer, GetByIdCorporateCustomerResponse.class);
+		
+		return corporateCustomerResponse;  
+	}
+
+}

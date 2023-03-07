@@ -1,0 +1,5 @@
+package RentACar.business.responses.address;
+
+public class GetByIdResponse {
+
+}

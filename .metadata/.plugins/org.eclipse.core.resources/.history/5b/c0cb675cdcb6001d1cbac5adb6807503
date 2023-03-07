@@ -1,5 +1,0 @@
-package RentACar.dataAccess.abstracts;
-
-public class ModelRepository {
-
-}

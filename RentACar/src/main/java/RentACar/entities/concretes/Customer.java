@@ -9,10 +9,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 public class Customer extends User {
 	
-	@Column(name="id")
+	@Column(name="customer_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private int Id;
+	private int CustomerId;
 	@OneToMany(mappedBy = "customer")
 	private List<Rental> rentals;
 	@OneToMany(mappedBy = "customer")

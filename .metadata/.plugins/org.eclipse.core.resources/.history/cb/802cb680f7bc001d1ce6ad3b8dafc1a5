@@ -1,0 +1,5 @@
+package RentACar.business.requests.address;
+
+public class UpdateAddressRequest {
+
+}

@@ -1,0 +1,5 @@
+package RentACar.business.requests.CorporateCustomer;
+
+public class CreateCorporateCustomerRequest {
+
+}

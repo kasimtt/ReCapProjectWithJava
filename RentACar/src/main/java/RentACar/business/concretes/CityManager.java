@@ -60,6 +60,7 @@ public class CityManager implements CityService{
 
 	@Override
 	public void delete(int id) {
+		cityBusinessRules.CheckIfIdExists(id);
 		cityRepository.deleteById(id);
 		
 	}

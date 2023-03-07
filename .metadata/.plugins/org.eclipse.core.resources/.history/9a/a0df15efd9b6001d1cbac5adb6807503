@@ -1,5 +1,0 @@
-package RentACar.business.requests;
-
-public class CreateModelRequest {
-
-}
